@@ -2,9 +2,10 @@ package com.expensescontrol.response;
 
 import com.expensescontrol.model.Receita;
 
-import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReceitaResponse {
     private String descricao;
@@ -12,6 +13,13 @@ public class ReceitaResponse {
     private LocalDate data;
 
     public ReceitaResponse(Receita receitas) {
+        this.descricao = receitas.getDescricao();
+        this.valor = receitas.getValor();
+        this.data = receitas.getData();
+    }
+
+    public static List<ReceitaResponse> converteReceitaParaReceitaLista(List<Receita> receitas) {
+        return receitas.stream().map(ReceitaResponse::new).collect(Collectors.toList());
     }
 
     public LocalDate getData() {
@@ -37,4 +45,6 @@ public class ReceitaResponse {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+
 }
