@@ -1,29 +1,26 @@
-package com.expensescontrol.form;
+package com.expensescontrol.response;
 
 import com.expensescontrol.model.Despesa;
 import com.expensescontrol.repository.DespesaRepository;
 
-import javax.validation.constraints.Negative;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class DespesaForm {
-
-    @NotEmpty
+public class DespesaResponse {
     private String descricao;
-    @NotNull
-    @Negative
     private BigDecimal valor;
     private LocalDate data;
 
-    public Despesa converter(DespesaRepository despesaRepository) {
-        if (data == null) {
-            this.data = LocalDate.now();
-        }
-        return new Despesa(descricao, valor, data);
+    public DespesaResponse(Despesa despesa) {
+        this.descricao = despesa.getDecricao();
+        this.valor = despesa.getValor();
+        this.data = despesa.getData();
+    }
+
+    public static List<DespesaResponse> converterDespesaParaDespesaLista(List<Despesa> despesas) {
+        return despesas.stream().map(DespesaResponse::new).collect(Collectors.toList());
     }
 
     public String getDescricao() {

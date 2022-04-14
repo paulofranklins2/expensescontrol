@@ -6,11 +6,10 @@ import com.expensescontrol.repository.DespesaRepository;
 import javax.validation.constraints.Negative;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class DespesaForm {
+public class AtualizarDespesaForm {
 
     @NotEmpty
     private String descricao;
@@ -19,11 +18,12 @@ public class DespesaForm {
     private BigDecimal valor;
     private LocalDate data;
 
-    public Despesa converter(DespesaRepository despesaRepository) {
-        if (data == null) {
-            this.data = LocalDate.now();
-        }
-        return new Despesa(descricao, valor, data);
+    public Despesa atualizar(Long id, DespesaRepository despesaRepository) {
+        Despesa despesa = despesaRepository.getById(id);
+        this.descricao = despesa.getDecricao();
+        this.valor = despesa.getValor();
+        this.data = despesa.getData();
+        return despesa;
     }
 
     public String getDescricao() {

@@ -43,7 +43,7 @@ public class AtualizarReceitaForm {
     }
 
     public Receita atualizar(Long id, ReceitaRepository receitaRepository) {
-        Receita receita = receitaRepository.getOne(id);
+        Receita receita = receitaRepository.getById(id);
         receita.setDescricao(this.descricao);
         receita.setValor(this.getValor());
         receita.setData(this.data);

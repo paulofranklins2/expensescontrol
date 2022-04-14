@@ -26,4 +26,31 @@ public class Despesa {
         this.data = data;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getDecricao() {
+        return decricao;
+    }
+
+    public void setDecricao(String decricao) {
+        this.decricao = decricao;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
 }

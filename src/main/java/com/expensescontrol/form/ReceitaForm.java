@@ -17,7 +17,7 @@ public class ReceitaForm {
     private LocalDate data;
 
     public Receita converter(ReceitaRepository receitaRepository) {
-        if(data == null){
+        if (data == null) {
             data = LocalDate.now();
         }
         return new Receita(descricao, valor, data);
